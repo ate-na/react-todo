@@ -1,0 +1,18 @@
+.card{
+    display: flex;
+    justify-content: space-between;
+    background-color: grey;
+    width: 200px;
+    align-items: center;
+    /* border-radius: 50px; */
+    border: 1px solid black;
+}
+
+button{
+    margin-right: 100px;
+}
+
+.sticker{
+    align-items: center;
+    padding-left: 40px;
+}

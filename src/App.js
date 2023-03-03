@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import TodoList from "./component/TodoList";
+import "./App.css";
+import NewTodo from "./component/NewTodo";
+
+const Todos = [
+  {
+    title: "work",
+    rate: 0,
+    description: "",
+    id: 0,
+  },
+  {
+    title: "x",
+    rate: 0,
+    description: "",
+    id: 1,
+  },
+  {
+    title: "y",
+    rate: 0,
+    description: "",
+    id: 2,
+  },
+];
 
 function App() {
+  const [todos, SetTodos] = useState([]);
+
+  const addNewPost = (data) => {
+    console.log("");
+    SetTodos((prev) => [...prev, data]);
+    // console.log("data", data);
+    // todos.push(data);
+  };
+
+  useEffect(() => {
+    SetTodos(Todos);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
+        // backgroundColor: "black",
+      }}
+    >
+      <TodoList todos={todos} setTodos={SetTodos} />
+      <NewTodo addNewPost={addNewPost} />
     </div>
   );
 }
