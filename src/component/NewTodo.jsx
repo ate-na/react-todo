@@ -13,23 +13,23 @@ const NewTodo = (props) => {
       rate: rate,
       description: description,
     };
-    console.log("data is", data);
     props.addNewPost(data);
+    props.onclose()
+    SetTitle("");
+    SetRate(0);
+    SetDescription("");
     // Data = { title: "", description: "", rate: "" };
   };
 
   const changeTitle = (e) => {
-    // console.log("title", e.target.value);
     SetTitle(e.target.value);
   };
 
   const changeDescription = (e) => {
-    console.log("Description", e.target.value);
     SetDescription(e.target.value);
   };
 
   const changeRate = (e) => {
-    console.log("rate", e.target.value);
     SetRate(e.target.value);
   };
 

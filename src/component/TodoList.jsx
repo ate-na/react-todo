@@ -1,25 +1,32 @@
 import Todo from "./Todo";
 
-const TodoList = ({ todos, SetTodos }) => {
-  // remove(e){
-  //   SetTodos((prevSate)=>prevSate.map((e)=>e.id!=1))
-  // }
+const TodoList = ({ todos, setTodos }) => {
+  const removeTodos = (id) => {
+    setTodos(prev => prev.filter((e) => e.id !== id));
+  };
+
   return (
     <>
-      <div>
+      <ul
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "10px",
+        }}
+      >
         {todos.map((e) => {
-          console.log("element", e);
           return (
-            // style={{
-            //   display: "flex",
-            //   flexDirection: "column",
-
-            //   padding: "10px",
-            // }}
-            <Todo title={e.title} rate={e.rate} key={e.id} />
+            <li key={e._id}>
+              <Todo
+                title={e.title}
+                rate={e.rate}
+                id={e._id}
+                removeTodos={removeTodos}
+              />
+            </li>
           );
         })}
-      </div>
+      </ul>
     </>
   );
 };

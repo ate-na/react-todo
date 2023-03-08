@@ -3,6 +3,7 @@ import TodoList from "./component/TodoList";
 import "./App.css";
 import NewTodo from "./component/NewTodo";
 import Modal from "./component/Modal";
+import MainHeader from "./component/Mainheader";
 
 const Todos = [
   {
@@ -27,20 +28,37 @@ const Todos = [
 
 function App() {
   const [todos, SetTodos] = useState([]);
-  const [isModalvisible, SetIsModalvisible] = useState(true);
+  const [isModalvisible, SetIsModalvisible] = useState(false);
+
   const addNewPost = (data) => {
-    console.log("");
+    fetch("http://localhost:3001/api/todo", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => console.log("response", res));
     SetTodos((prev) => [...prev, data]);
-    // console.log("data", data);
-    // todos.push(data);
   };
 
   const onclose = () => {
     SetIsModalvisible(false);
   };
 
+  const openModel = () => {
+    SetIsModalvisible(true);
+  };
+
   useEffect(() => {
-    SetTodos(Todos);
+    async function getData() {
+      const res = await fetch("http://localhost:3001/api/todo", {
+        method: "Get",
+      });
+      const response = await res.json();
+      SetTodos(response.data || []);
+    }
+    getData();
+    // console.log("xxxx", x);
   }, []);
   return (
     <div
@@ -52,6 +70,7 @@ function App() {
         // backgroundColor: "black",
       }}
     >
+      <MainHeader open={openModel} />
       <TodoList todos={todos} setTodos={SetTodos} />
       {isModalvisible ? (
         <Modal onclose={onclose}>

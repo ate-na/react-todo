@@ -3,19 +3,17 @@ import { TiDeleteOutline } from "react-icons/ti";
 
 const Todo = (props) => {
   const remove = () => {
-    console.log("name", props.title);
+    props.removeTodos(props.id);
   };
   return (
     <>
-      <div style={{backgroundColor:"rebeccapurple"}}>
+      <div style={{ backgroundColor: "rebeccapurple" }}>
         <li
           style={{
             listStyle: "none",
-            width: "200px",
-            // backgroundColor: "rebeccapurple",
+            width: "100%",
             display: "flex",
-            justifyContent: "center",
-            paddingBottom: "20px",
+            paddingRight: "20px",
           }}
         >
           <div
@@ -25,16 +23,32 @@ const Todo = (props) => {
               flexDirection: "row",
               backgroundColor: "rebeccapurple",
               justifyContent: "space-between",
-              // alignItems:"center",
               maxWidth: "50rem",
               width: "200px",
             }}
           >
-            <p style={{backgroundColor:"rebeccapurple",color:"white",paddingLeft:"10px"}}>{props.title}</p>
-            {/* <button onClick={remove} /> */}
-            <div style={{ cursor: "pointer",color:"black",backgroundColor:"rebeccapurple",paddingRight:"10px" }}>
+            <p
+              style={{
+                backgroundColor: "rebeccapurple",
+                color: "white",
+                paddingLeft: "10px",
+              }}
+            >
+              {props.title}
+            </p>
+            <div
+              style={{
+                cursor: "pointer",
+                color: "black",
+                backgroundColor: "rebeccapurple",
+                paddingRight: "10px",
+              }}
+            >
               <TiDeleteOutline
-                style={{ paddingLeft: "100px",backgroundColor:"rebeccapurple" }}
+                style={{
+                  paddingLeft: "100px",
+                  backgroundColor: "rebeccapurple",
+                }}
                 onClick={remove}
               />
             </div>
