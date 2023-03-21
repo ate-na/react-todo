@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TodoList from "./component/TodoList";
-import "./App.css";
+// import "./App";
 import NewTodo from "./component/NewTodo";
 import Modal from "./component/Modal";
 import MainHeader from "./component/Mainheader";
@@ -29,6 +29,7 @@ const Todos = [
 function App() {
   const [todos, SetTodos] = useState([]);
   const [isModalvisible, SetIsModalvisible] = useState(false);
+  const [loading, SetLoading] = useState(false);
 
   const addNewPost = (data) => {
     fetch("http://localhost:3001/api/todo", {
@@ -49,17 +50,27 @@ function App() {
     SetIsModalvisible(true);
   };
 
+  const removeSingle = (id) => {
+    fetch(`http://localhost:3001/api/todo/${id}`, {
+      method: "DELETE",
+    }).then((res) => {
+      SetLoading(true);
+    });
+  };
+
   useEffect(() => {
     async function getData() {
+      SetLoading(true);
       const res = await fetch("http://localhost:3001/api/todo", {
         method: "Get",
       });
       const response = await res.json();
       SetTodos(response.data || []);
+      SetLoading(false);
     }
     getData();
     // console.log("xxxx", x);
-  }, []);
+  }, [loading]);
   return (
     <div
       style={{
@@ -71,7 +82,9 @@ function App() {
       }}
     >
       <MainHeader open={openModel} />
-      <TodoList todos={todos} setTodos={SetTodos} />
+      {!loading && <TodoList todos={todos} removeSingle={removeSingle} />}
+      {loading && <p style={{ color: "white" }}>loading posts....</p>}
+
       {isModalvisible ? (
         <Modal onclose={onclose}>
           <NewTodo addNewPost={addNewPost} onclose={onclose} />

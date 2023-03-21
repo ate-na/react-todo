@@ -1,0 +1,22 @@
+.detail {
+  background-color: rgb(107, 26, 156);
+}
+.element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  padding: 20px;
+  color: white;
+  background-color: rgb(107, 26, 156);
+}
+
+.ele {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(107, 26, 156);
+}
+.label{
+  background-color: rgb(107, 26, 156);
+
+}

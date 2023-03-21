@@ -1,60 +1,69 @@
 import "./Todo.css";
 import { TiDeleteOutline } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const Todo = (props) => {
-  const remove = () => {
-    props.removeTodos(props.id);
+  // const remove = () => {
+  // props.removeTodos(props.id);
+  // console.log(pro  ps);
+  // };
+  const x = () => {
+    console.log(props.id);
   };
   return (
     <>
-      <div style={{ backgroundColor: "rebeccapurple" }}>
-        <li
-          style={{
-            listStyle: "none",
-            width: "100%",
-            display: "flex",
-            paddingRight: "20px",
-          }}
-        >
-          <div
+      <Link
+        to={`/${props.id.toString()}`}
+        onClick={x}
+      >
+        <div style={{ backgroundColor: "rebeccapurple" }}>
+          <li
             style={{
-              alignItems: "center",
+              listStyle: "none",
+              width: "100%",
               display: "flex",
-              flexDirection: "row",
-              backgroundColor: "rebeccapurple",
-              justifyContent: "space-between",
-              maxWidth: "50rem",
-              width: "200px",
+              paddingRight: "20px",
             }}
           >
-            <p
-              style={{
-                backgroundColor: "rebeccapurple",
-                color: "white",
-                paddingLeft: "10px",
-              }}
-            >
-              {props.title}
-            </p>
             <div
               style={{
-                cursor: "pointer",
-                color: "black",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "row",
                 backgroundColor: "rebeccapurple",
-                paddingRight: "10px",
+                justifyContent: "space-between",
+                maxWidth: "50rem",
+                width: "200px",
               }}
             >
-              <TiDeleteOutline
+              <p
                 style={{
-                  paddingLeft: "100px",
                   backgroundColor: "rebeccapurple",
+                  color: "white",
+                  paddingLeft: "10px",
                 }}
-                onClick={remove}
-              />
+              >
+                {props.title}
+              </p>
+              <div
+                style={{
+                  cursor: "pointer",
+                  color: "black",
+                  backgroundColor: "rebeccapurple",
+                  paddingRight: "10px",
+                }}
+              >
+                <TiDeleteOutline
+                  style={{
+                    paddingLeft: "100px",
+                    backgroundColor: "rebeccapurple",
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        </li>
-      </div>
+          </li>
+        </div>
+      </Link>
     </>
   );
 };

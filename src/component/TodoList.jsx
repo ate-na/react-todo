@@ -1,9 +1,6 @@
 import Todo from "./Todo";
 
-const TodoList = ({ todos, setTodos }) => {
-  const removeTodos = (id) => {
-    setTodos(prev => prev.filter((e) => e.id !== id));
-  };
+const TodoList = ({ todos, removeSingle }) => {
 
   return (
     <>
@@ -14,18 +11,18 @@ const TodoList = ({ todos, setTodos }) => {
           gap: "10px",
         }}
       >
-        {todos.map((e) => {
-          return (
-            <li key={e._id}>
-              <Todo
-                title={e.title}
-                rate={e.rate}
-                id={e._id}
-                removeTodos={removeTodos}
-              />
-            </li>
-          );
-        })}
+        {todos &&
+          todos.map((e) => {
+            return (
+              <li key={e.id}>
+                <Todo
+                  title={e.title}
+                  rate={e.rate}
+                  id={e.id}
+                />
+              </li>
+            );
+          })}
       </ul>
     </>
   );

@@ -37,7 +37,7 @@ form {
   cursor: pointer;
 }
 
-button {
+.button {
   /* width: 10%; */
   background-color: rgb(107, 26, 156);
   border: none;
